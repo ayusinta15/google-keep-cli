@@ -1,0 +1,22 @@
+{
+    "name": "ayusinta15/google-keep-cli",
+    "description": "Google Keep CLI application built with PHP",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ayusinta15\\GoogleKeepCli\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ayusinta15",
+            "email": "ayusinta988888@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^11.5",
+        "mockery/mockery": "^1.6"
+    }
+}
