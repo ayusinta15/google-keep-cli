@@ -15,6 +15,26 @@ class NoteRepository
 
     public function findAll()
     {
-        return $this->notes;
+    usort($this->notes, function ($a, $b) {
+
+        return $b->isPinned <=> $a->isPinned;
+
+    });
+
+    return $this->notes;
+    }
+
+    public function update(Note $note)
+    {
+    foreach ($this->notes as $index => $item) {
+
+        if ($item->id === $note->id) {
+            $this->notes[$index] = $note;
+            return true;
+        }
+
+    }
+
+    return false;
     }
 }

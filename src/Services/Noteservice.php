@@ -15,12 +15,19 @@ class NoteService
         $this->repository = $repository;
     }
 
-    public function createNote(string $title, string $content)
+    public function createNote(
+        string $title,
+        string $content,
+        bool $isPinned = false,
+        bool $isArchived = false
+    )
     {
         $note = new Note(
             $this->nextId,
             $title,
-            $content
+            $content,
+            $isPinned,
+            $isArchived
         );
 
         $this->nextId++;
@@ -34,4 +41,32 @@ class NoteService
     {
         return $this->repository->findAll();
     }
+
+    public function updateNote(
+    int $id,
+    string $title,
+    string $content,
+    bool $isPinned,
+    bool $isArchived
+)
+{
+    $notes = $this->repository->findAll();
+
+    foreach ($notes as $note) {
+
+        if ($note->id === $id) {
+
+            $note->title = $title;
+            $note->content = $content;
+            $note->isPinned = $isPinned;
+            $note->isArchived = $isArchived;
+
+            $this->repository->update($note);
+
+            return $note;
+        }
+    }
+
+    return null;
+}
 }
