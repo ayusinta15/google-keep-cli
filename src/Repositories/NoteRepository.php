@@ -37,4 +37,22 @@ class NoteRepository
 
     return false;
     }
+
+    public function delete(int $id)
+    {
+    foreach ($this->notes as $key => $note) {
+
+        if ($note->id === $id) {
+
+            unset($this->notes[$key]);
+
+            $this->notes = array_values($this->notes);
+
+            return true;
+        }
+    }
+
+    return false;
+    }
+    
 }

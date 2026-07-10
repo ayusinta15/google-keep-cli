@@ -48,8 +48,8 @@ class NoteService
     string $content,
     bool $isPinned,
     bool $isArchived
-)
-{
+    )
+    {
     $notes = $this->repository->findAll();
 
     foreach ($notes as $note) {
@@ -68,5 +68,10 @@ class NoteService
     }
 
     return null;
-}
+    }
+
+    public function deleteNote(int $id)
+    {
+    return $this->repository->delete($id);
+    }
 }

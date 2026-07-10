@@ -105,6 +105,22 @@ while (true) {
 
     break;
 
+        case 4:
+
+    echo PHP_EOL . " -- Delete Note -- " . PHP_EOL;
+
+    $id = readline("ID Note : ");
+
+    $result = $service->deleteNote($id);
+
+    if ($result) {
+        echo "Note berhasil dihapus!" . PHP_EOL;
+    } else {
+        echo "Note tidak ditemukan!" . PHP_EOL;
+    }
+
+    break;
+
         case 0:
 
             echo PHP_EOL . "Thank you for using Google Keep!" . PHP_EOL;
