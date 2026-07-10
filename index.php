@@ -41,28 +41,26 @@ while (true) {
 
     break;
 
-        case 2:
-            echo PHP_EOL . "=== View Notes ===" . PHP_EOL;
-            break;
+                case 2:
+            echo PHP_EOL . " -- View Notes -- " . PHP_EOL;
 
-        case 3:
-            echo PHP_EOL . "=== Update Note ===" . PHP_EOL;
-            break;
+            $notes = $service->getAllNotes();
 
-        case 4:
-            echo PHP_EOL . "=== Delete Note ===" . PHP_EOL;
-            break;
+            echo "Jumlah note: " . count($notes) . PHP_EOL;
 
-        case 5:
-            echo PHP_EOL . "=== Search Note ===" . PHP_EOL;
-            break;
+            if (empty($notes)) {
+                echo "Belum ada note." . PHP_EOL;
+            } else {
+                foreach ($notes as $note) {
+                    echo PHP_EOL;
+                    echo "ID       : " . $note->id . PHP_EOL;
+                    echo "Title    : " . $note->title . PHP_EOL;
+                    echo "Content  : " . $note->content . PHP_EOL;
+                    echo "Pinned   : " . ($note->isPinned ? "Yes" : "No") . PHP_EOL;
+                    echo "Archived : " . ($note->isArchived ? "Yes" : "No") . PHP_EOL;
+}
+            }
 
-        case 6:
-            echo PHP_EOL . "=== Pin Note ===" . PHP_EOL;
-            break;
-
-        case 7:
-            echo PHP_EOL . "=== Archive Note ===" . PHP_EOL;
             break;
 
         case 0:
@@ -70,7 +68,7 @@ while (true) {
             exit;
 
         default:
-            echo PHP_EOL . "Invalid choice!" . PHP_EOL;
+            echo PHP_EOL . "Invalid choice!" . PHP_EOL;   
     }
 
     readline(PHP_EOL . "Press Enter to continue...");
