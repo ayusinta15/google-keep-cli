@@ -74,4 +74,14 @@ class NoteService
     {
     return $this->repository->delete($id);
     }
+
+    public function searchNote(string $keyword)
+    {
+    return $this->repository->search($keyword);
+    }
+
+    public function getArchivedNotes()
+    {
+    return $this->repository->findArchived();
+}
 }

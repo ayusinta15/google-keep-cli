@@ -54,5 +54,34 @@ class NoteRepository
 
     return false;
     }
-    
+
+    public function search(string $keyword)
+    {
+    $result = [];
+
+    foreach ($this->notes as $note) {
+
+        if (
+            stripos($note->title, $keyword) !== false ||
+            stripos($note->content, $keyword) !== false
+        ) {
+            $result[] = $note;
+        }
+    }
+
+    return $result;
+    }
+
+    public function findArchived()
+    {
+    $result = [];
+
+    foreach ($this->notes as $note) {
+        if ($note->isArchived) {
+            $result[] = $note;
+        }
+    }
+
+    return $result;
+}
 }

@@ -18,8 +18,7 @@ while (true) {
     echo "3. Update Note" . PHP_EOL;
     echo "4. Delete Note" . PHP_EOL;
     echo "5. Search Note" . PHP_EOL;
-    echo "6. Pin Note" . PHP_EOL;
-    echo "7. Archive Note" . PHP_EOL;
+    echo "6. Archive Note" . PHP_EOL;
     echo "0. Exit" . PHP_EOL;
 
     $choice = readline("Choose: ");
@@ -117,6 +116,58 @@ while (true) {
         echo "Note berhasil dihapus!" . PHP_EOL;
     } else {
         echo "Note tidak ditemukan!" . PHP_EOL;
+    }
+
+    break;
+
+        case 5:
+
+    echo PHP_EOL . " -- Search Note -- " . PHP_EOL;
+
+    $keyword = readline("Keyword : ");
+
+    $notes = $service->searchNote($keyword);
+
+    if (empty($notes)) {
+
+        echo "Note tidak ditemukan." . PHP_EOL;
+
+    } else {
+
+        foreach ($notes as $note) {
+
+            echo PHP_EOL;
+            echo "ID       : " . $note->id . PHP_EOL;
+            echo "Title    : " . $note->title . PHP_EOL;
+            echo "Content  : " . $note->content . PHP_EOL;
+            echo "Pinned   : " . ($note->isPinned ? "Yes" : "No") . PHP_EOL;
+            echo "Archived : " . ($note->isArchived ? "Yes" : "No") . PHP_EOL;
+        }
+    }
+
+    break;
+
+        case 6:
+
+    echo PHP_EOL . " -- Archive Note -- " . PHP_EOL;
+
+    $notes = $service->getArchivedNotes();
+
+    if (empty($notes)) {
+
+        echo "Belum ada note yang di-archive." . PHP_EOL;
+
+    } else {
+
+        foreach ($notes as $note) {
+
+            echo PHP_EOL;
+            echo "ID       : " . $note->id . PHP_EOL;
+            echo "Title    : " . $note->title . PHP_EOL;
+            echo "Content  : " . $note->content . PHP_EOL;
+            echo "Pinned   : " . ($note->isPinned ? "Yes" : "No") . PHP_EOL;
+            echo "Archived : " . ($note->isArchived ? "Yes" : "No") . PHP_EOL;
+        }
     }
 
     break;
