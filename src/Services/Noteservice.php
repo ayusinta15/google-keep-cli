@@ -3,32 +3,35 @@
 namespace Ayusinta15\GoogleKeepCli\Services;
 
 use Ayusinta15\GoogleKeepCli\Models\Note;
-use Ayusinta15\GoogleKeepCli\Repositories\NoteRepositoryInterface;
+use Ayusinta15\GoogleKeepCli\Repositories\NoteRepository;
 
 class NoteService
 {
-    private NoteRepositoryInterface $repository;
+    private NoteRepository $repository;
+    private int $nextId = 1;
 
-    public function __construct(NoteRepositoryInterface $repository)
+    public function __construct(NoteRepository $repository)
     {
         $this->repository = $repository;
     }
 
-    public function addNote(
-        string $title,
-        string $content,
-        bool $pinned,
-        bool $archived
-    ): bool {
-
+    public function createNote(string $title, string $content)
+    {
         $note = new Note(
-            null,
+            $this->nextId,
             $title,
-            $content,
-            $pinned,
-            $archived
+            $content
         );
 
-        return $this->repository->add($note);
+        $this->nextId++;
+
+        $this->repository->save($note);
+
+        return $note;
+    }
+
+    public function getAllNotes()
+    {
+        return $this->repository->findAll();
     }
 }

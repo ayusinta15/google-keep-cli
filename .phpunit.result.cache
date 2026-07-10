@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"NoteServiceTest::test_create_note_success":0.004,"NoteServiceTest::test_get_all_notes_success":0.052}}

@@ -1,6 +1,11 @@
 <?php
+use Ayusinta15\GoogleKeepCli\Repositories\NoteRepository;
+use Ayusinta15\GoogleKeepCli\Services\NoteService;
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+$repository = new NoteRepository();
+$service = new NoteService($repository);
 
 while (true) {
 
@@ -21,8 +26,20 @@ while (true) {
     switch ($choice) {
 
         case 1:
-            echo PHP_EOL . "=== Add Note ===" . PHP_EOL;
-            break;
+
+    echo PHP_EOL . " -- Add Note -- " . PHP_EOL;
+
+    $title = readline("Title : ");
+    $content = readline("Content : ");
+
+    $service->createNote(
+        $title,
+        $content
+    );
+
+    echo " Note berhasil ditambahkan!" . PHP_EOL;
+
+    break;
 
         case 2:
             echo PHP_EOL . "=== View Notes ===" . PHP_EOL;
