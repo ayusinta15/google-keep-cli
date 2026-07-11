@@ -14,19 +14,30 @@ class NoteRepositoryMockTest extends TestCase
 
     public function testCreateNoteCallsSaveMethod()
     {
-        $repository = \Mockery::mock(NoteRepository::class);
+    $repository = \Mockery::mock(NoteRepository::class);
 
-        $repository
-            ->shouldReceive('save')
-            ->once()
-            ->with(\Mockery::type(Note::class));
+    $repository
+        ->shouldReceive('save')
+        ->once()
+        ->with(\Mockery::type(Note::class));
 
-        $service = new NoteService($repository);
+    $service = new NoteService($repository);
 
-        $note = $service->createNote(
-        "Belajar Mocking",
-        "Testing Repository"
+    $note = $service->createNote(
+        "Tugas Pengujian",
+        "Membuat fitur Google Keep"
     );
+
     $this->assertInstanceOf(Note::class, $note);
+
+    $this->assertEquals(
+        "Tugas Pengujian",
+        $note->title
+    );
+
+    $this->assertEquals(
+        "Membuat fitur Google Keep",
+        $note->content
+    );
     }
 }
