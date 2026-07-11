@@ -12,6 +12,7 @@ Tools yang digunakan dalam proses testing:
 
 ## Menjalankan Aplikasi
 - Aplikasi Google Keep CLI dapat dijalankan melalui terminal menggunakan perintah:
+
 php index.php
 
 ## Unit Test yang Dibuat

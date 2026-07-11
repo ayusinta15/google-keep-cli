@@ -1,1 +1,0 @@
-{"version":2,"defects":{"NoteRepositoryMockTest::testCreateNoteCallsSaveMethod":5},"times":{"NoteServiceTest::test_create_note_success":0.001,"NoteServiceTest::test_get_all_notes_success":0.001,"NoteRepositoryMockTest::testCreateNoteCallsSaveMethod":0.095}}
